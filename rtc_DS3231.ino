@@ -39,8 +39,8 @@
 #include "RTClib.h"
 
 // pick the right module
-#define DS3231
-//#define DS1307
+//#define DS3231
+#define DS1307
 
 
 #ifdef DS3231
@@ -83,8 +83,11 @@ void setup () {
 #endif
 
 #ifdef DS1307
+  if (! rtc.isrunning()) {
+    Serial.println("RTC is NOT running!");
     // set initial time
     rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
+  }
 #endif
 
   // When time needs to be re-set on a previously configured device, the
@@ -120,21 +123,21 @@ void loop () {
     Serial.println("d");
 
     // calculate a date which is 7 days and 30 seconds into the future
-    DateTime future (now + TimeSpan(7,12,30,6));
-
-    Serial.print(" now + 7d + 30s: ");
-    Serial.print(future.year(), DEC);
-    Serial.print('/');
-    Serial.print(future.month(), DEC);
-    Serial.print('/');
-    Serial.print(future.day(), DEC);
-    Serial.print(' ');
-    Serial.print(future.hour(), DEC);
-    Serial.print(':');
-    Serial.print(future.minute(), DEC);
-    Serial.print(':');
-    Serial.print(future.second(), DEC);
-    Serial.println();
+//    DateTime future (now + TimeSpan(7,12,30,6));
+//
+//    Serial.print(" now + 7d + 30s: ");
+//    Serial.print(future.year(), DEC);
+//    Serial.print('/');
+//    Serial.print(future.month(), DEC);
+//    Serial.print('/');
+//    Serial.print(future.day(), DEC);
+//    Serial.print(' ');
+//    Serial.print(future.hour(), DEC);
+//    Serial.print(':');
+//    Serial.print(future.minute(), DEC);
+//    Serial.print(':');
+//    Serial.print(future.second(), DEC);
+//    Serial.println();
 
 #ifdef DS3231
     Serial.print("Temperature: ");
